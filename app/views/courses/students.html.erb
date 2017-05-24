@@ -6,4 +6,44 @@
 
 <br>
 
-<%= link_to 'New Student', new_course_enrollment_path(course_id: @course.id) %>
+<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#add-student-modal">Add Student</button>
+
+<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#create-student">Create Student</button>
+
+<div id="add-student-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="field form-group">
+          <%= render 'enrollments/form', course: @course, enrollment: @enrollment %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="create-student" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="field form-group">
+          <%= render 'people/form', person: @person, course: @course %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

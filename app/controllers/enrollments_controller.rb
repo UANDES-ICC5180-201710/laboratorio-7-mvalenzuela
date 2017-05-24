@@ -27,11 +27,13 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment = Enrollment.new(enrollment_params)
     @enrollment.course = @course
+    @person = @enrollment.student
 
     respond_to do |format|
       if @enrollment.save
         format.html { redirect_to [@course, @enrollment], notice: 'Enrollment was successfully created.' }
         format.json { render :show, status: :created, location: @enrollment }
+        format.js { render 'courses/show_update' }
       else
         format.html { render :new }
         format.json { render json: @enrollment.errors, status: :unprocessable_entity }
@@ -58,7 +60,7 @@ class EnrollmentsController < ApplicationController
   def destroy
     @enrollment.destroy
     respond_to do |format|
-      format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
+      format.html { redirect_to course_enrollments_url, notice: 'Enrollment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -30,6 +30,7 @@ class PeopleController < ApplicationController
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
+        format.js { render 'courses/show_update2' }
       else
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -69,6 +70,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name, :email, :email_confirmation)
+      params.require(:person).permit(:first_name, :last_name, :email, :email_confirmation, :password, :password_confirmation)
     end
 end
